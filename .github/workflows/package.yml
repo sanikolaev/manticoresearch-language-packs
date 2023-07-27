@@ -45,16 +45,16 @@ jobs:
 
     - name: Build RPM package
       run: |
-        fpm -s dir -t rpm -n manticore-aot -v ${{ steps.vars.outputs.rpm_version }} -a noarch --prefix=/usr/share/manticore -C package/usr/share/manticore .
+        fpm -s dir -t rpm -n manticore-language-packs -v ${{ steps.vars.outputs.rpm_version }} -a noarch --prefix=/usr/share/manticore -C package/usr/share/manticore .
 
     - name: Build DEB package
       run: |
-        fpm -s dir -t deb -n manticore-aot -v ${{ steps.vars.outputs.deb_version }} -a all --prefix /usr/share/manticore -C package/usr/share/manticore .
+        fpm -s dir -t deb -n manticore-language-packs -v ${{ steps.vars.outputs.deb_version }} -a all --prefix /usr/share/manticore -C package/usr/share/manticore .
 
     - name: Build WIN package
       run: |
         cd package
-        zip -r "../manticore-aot-${{ steps.vars.outputs.win_version }}-x64.zip" usr/share/manticore
+        zip -r "../manticore-language-packs-${{ steps.vars.outputs.win_version }}-x64.zip" usr/share/manticore
         cd ..
 
     - uses: actions/upload-artifact@v3
