@@ -1,8 +1,8 @@
-name: Ubuntu Workflow
+name: Package Workflow
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -36,7 +36,7 @@ jobs:
 
     - id: vars
       run: |
-        version=0.9.9
+        version=$(echo ${{ github.ref_name }} | cut -dv -f2)
         date=$(date +%y%m%d)
         commit=${GITHUB_SHA:0:7}
         echo "rpm_version=${version}_${date}.${commit}" >> $GITHUB_OUTPUT
